@@ -3,22 +3,43 @@
 
 @theme {
 
+    --color-red-*: initial;
+    --color-orange-* : initial;
+    --color-amber-* : initial;
+    --color-yellow-* : initial;
+    --color-lime-* : initial;
+    --color-green-* : initial;
+    --color-emerald-* : initial;
+    --color-teal-* : initial;
+    --color-cyan-* : initial;
+    --color-sky-* : initial;
+    --color-blue-* : initial;
+    --color-indigo-* : initial;
+    --color-violet-* : initial;
+    --color-purple-* : initial;
+    --color-fuchsia-* : initial;
+    --color-pink-* : initial;
+    --color-rose-* : initial;
+    --color-slate-* : initial;
+    --color-gray-* : initial;
+    --color-zinc-* : initial;
+    --color-neutral-* : initial;
+    --color-stone-* : initial;
+
     --color-pink: #e90e8b;
     --color-blue: #29ABE2;
     --color-black: #111111;
-    --color-gray: var(--color-gray-500);
-    --color-faded: var(--color-gray-200);
+    --color-gray: #6b7280;
+    --color-faded: #e5e7eb;
 
     --font-display: "industry", sans-serif;
     --font-serif: "georgia", sans-serif;
     --font-roboto: "Roboto";
-
-    --text-2xs: 0.625rem;
 }
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 20px;
+  font-size: 24px;
   line-height: 1.5;
   font-weight: 400;
 
@@ -56,4 +77,8 @@
 }
 .vg-footer {
     grid-area: bottom;
+}
+
+.frame-header, .code-bg{
+    background-image: url('./assets/bg.png');
 }

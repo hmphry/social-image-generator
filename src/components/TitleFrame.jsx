@@ -13,8 +13,8 @@ const TitleFrame = ({title, description}) => {
                     </div>
                 </div>
                 <div className='vg-content flex flex-col justify-center gap-4'>
-                    <Header1 className='max-w-4/5'>{title}</Header1>
-                    <div className='flex flex-col gap-4 pt-4 text-lg max-w-4/5'>
+                    <Header1>{title}</Header1>
+                    <div className='flex flex-col gap-4 pt-4'>
                         {description}
                     </div>
                 </div>
