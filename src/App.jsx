@@ -40,14 +40,14 @@ array.reduce(reducerFunction, initialValue)
                 <div className="grid grid-cols-2 gap-8 pt-4">
                     <div>
                         <Header5 className="max-w-full pb-4">Array.reduce Parameters</Header5>
-                        <ul className='grid grid-cols-1 gap-1 pl-6'>
+                        <ul className='grid grid-cols-1 gap-1'>
                             <li><Paragraph className="max-w-full"><span className="font-semibold">reducer</span>: a callback that runs for each array item.</Paragraph></li>
                             <li><Paragraph className="max-w-full"><span className="font-semibold">initialValue</span>: starting value for the accumulator</Paragraph></li>
                         </ul>
                     </div>
                     <div>
                         <Header5 className="max-w-full pb-4">Reducer Function  Parameters</Header5>
-                        <ul className='grid grid-cols-1 gap-1 pl-6'>
+                        <ul className='grid grid-cols-1 gap-1'>
                             <li><Paragraph className="max-w-full"><span className='font-semibold'>accumulator</span>: carried value across iterations.</Paragraph></li>
                             <li><Paragraph className="max-w-full"><span className='font-semibold'>currentValue</span>: the current array item.</Paragraph></li>
                         </ul>
@@ -72,7 +72,7 @@ array.reduce(reducerFunction, initialValue)
 const sum = numbers.reduce((acc, num) => acc + num, 0)
 console.log(sum)  // Output: 10`}
               </Code>
-              <Paragraph className='pt-6 max-w-full'><span className='font-bold'>Tip</span>: Do not forget to set the initial value. Without it, the first array element becomes the initial value.</Paragraph>
+              <Paragraph className='pt-6'><span className='font-bold'>Tip</span>: Do not forget to set the initial value. Without it, the first array element becomes the initial value.</Paragraph>
             </div>
         </Frame>
         <Frame>
@@ -110,7 +110,6 @@ console.log(tally)  // Output: { yes: 3, no: 1 }`}
     { id: 2, type: 'expense', amount: 200 },
     ...
 ]
-
 const grouped = transactions.reduce((acc, tx) => {
     if (!acc[tx.type]) acc[tx.type] = []
     acc[tx.type].push(tx)
@@ -126,7 +125,7 @@ console.log(grouped)  // Output: { income: [...], expense: [...] }`}
             <div className='vg-content flex flex-col justify-center gap-4'>
                 <Header2 className='text-3xl'>Pitfalls</Header2>
                 <Paragraph className='pb-6'>Array.reduce is powerful, but easy to misuse. Here are some common mistakes to watch for:</Paragraph>
-                <ul className='px-6 grid grid-cols-1 gap-4'>
+                <ul className='grid grid-cols-1 gap-4'>
                     <li><Paragraph className="max-w-full"><span className='font-bold'>Parameter Positioning</span>: While the initialValue is the second argument passed to array.reduce, the accumulator is the first parameter inside the reducer function.</Paragraph></li>
                     <li><Paragraph className="max-w-full"><span className='font-bold'>Overcomplicating logic</span>: Trying to do too much in one line makes your reducer hard to read. Break complex logic into smaller steps or helper functions.</Paragraph></li>
                     <li><Paragraph className="max-w-full"><span className='font-bold'>Mutating the accumulator carelessly</span>: If you're building objects or arrays inside the reducer, avoid modifying them directly. Use spread syntax or Object.assign for safer updates.</Paragraph></li>
@@ -136,7 +135,7 @@ console.log(grouped)  // Output: { income: [...], expense: [...] }`}
         </Frame>
         
         <FinalFrame title="That's all, Folks">
-            <Paragraph className='pb-6'>Thanks for sticking with me and exploring array.reduce. I hope this helped make the concept a little clearer and more practical. Do you have a favorite use case or question about array.reduce? Leave a comment, share the post, or just say hi. I would love to hear from you.</Paragraph>
+            <Paragraph>Thanks for sticking with me and exploring array.reduce. I hope this helped make the concept a little clearer and more practical. Do you have a favorite use case or question about array.reduce? Leave a comment, share the post, or just say hi. I would love to hear from you.</Paragraph>
         </FinalFrame>
       </div>
     </FrameProvider>

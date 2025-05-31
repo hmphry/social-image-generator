@@ -8,8 +8,8 @@ const TitleFrame = ({title, description}) => {
                 <div className='vg-header flex justify-start items-center gap-4 '>
                     <Logo className="w-20" />
                     <div className='grid grid-cols-1'>
-                        <p className='font-display uppercase tracking-wide'>Emily Humphrey</p>
-                        <p className='font-display uppercase tracking-wide text-gray'>Full Stack Engineer</p>
+                        <p className='font-display uppercase tracking-wide font-medium'>Emily Humphrey</p>
+                        <p className='font-display uppercase tracking-wide text-gray font-medium'>Full Stack Engineer</p>
                     </div>
                 </div>
                 <div className='vg-content flex flex-col justify-center gap-4'>

@@ -36,7 +36,7 @@ const Frame = ({classname, children}) => {
     return (
         <section className="grid grid-cols-1 gap-4 justify-center items-center">
             <div className="flex justify-center">
-            <div className="relative z-0 size-[1080px] bg-white" ref={ref}>
+            <div className="relative z-0 size-[1080px] overflow-hidden bg-white" ref={ref}>
                 <div className="vertical-grid">
                     <div className="vg-header h-5 w-full frame-header"></div>
                     <div className="vg-content">
