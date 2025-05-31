@@ -4,7 +4,7 @@ import { a11yLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 const Code = ({children}) => {
     return (
             <div className='p-1 code-bg'>
-                <div className='p-3 bg-white'>
+                <div className='p-1 bg-white'>
                     <SyntaxHighlighter language="javascript" style={a11yLight}>{children}</SyntaxHighlighter>
                 </div>
             </div>
