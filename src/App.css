@@ -1,4 +1,5 @@
 @import url("https://use.typekit.net/esi2uwi.css");
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -28,18 +29,22 @@
 
     --color-pink: #e90e8b;
     --color-blue: #29ABE2;
+    --color-green: #2d9d70;
+    --color-bronze: #b97f2c;
     --color-black: #111111;
     --color-gray: #6b7280;
     --color-faded: #e5e7eb;
 
-    --font-display: "industry", sans-serif;
-    --font-serif: "georgia", sans-serif;
+    --font-display: "zenon", sans-serif;
+    --font-degular: "degular", sans-serif;
+    --font-serif: "georgia", serif;
     --font-roboto: "Roboto";
+    --font-outfit: "Outfit", sans-serif;
 }
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 24px;
+  font-family: var(--font-outfit);
+  font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
 

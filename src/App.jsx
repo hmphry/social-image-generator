@@ -101,7 +101,7 @@ console.log(tally)  // Output: { yes: 3, no: 1 }`}
           <div className='vg-content flex flex-col justify-center gap-4'>
               <div>
                     <Eyebrow>Example 3</Eyebrow>
-                  <Header2 className='text-3xl'>Complex Object</Header2>
+                  <Header2 className='text-3xl'>A Complex Object</Header2>
               </div>
               <Paragraph className='pb-6'>This example groups items by a shared property. We start with an empty object, check if each group exists, create it if needed, and push the item into the right category.</Paragraph>
               <Code>
@@ -124,12 +124,12 @@ console.log(grouped)  // Output: { income: [...], expense: [...] }`}
         <Frame>
             <div className='vg-content flex flex-col justify-center gap-4'>
                 <Header2 className='text-3xl'>Pitfalls</Header2>
-                <Paragraph className='pb-6'>Array.reduce is powerful, but easy to misuse. Here are some common mistakes to watch for:</Paragraph>
+                <Paragraph>Array.reduce is powerful, but easy to misuse. Here are some common mistakes to watch for:</Paragraph>
                 <ul className='grid grid-cols-1 gap-4'>
-                    <li><Paragraph className="max-w-full"><span className='font-bold'>Parameter Positioning</span>: While the initialValue is the second argument passed to array.reduce, the accumulator is the first parameter inside the reducer function.</Paragraph></li>
-                    <li><Paragraph className="max-w-full"><span className='font-bold'>Overcomplicating logic</span>: Trying to do too much in one line makes your reducer hard to read. Break complex logic into smaller steps or helper functions.</Paragraph></li>
-                    <li><Paragraph className="max-w-full"><span className='font-bold'>Mutating the accumulator carelessly</span>: If you're building objects or arrays inside the reducer, avoid modifying them directly. Use spread syntax or Object.assign for safer updates.</Paragraph></li>
-                    <li><Paragraph className="max-w-full"><span className='font-bold'>Using a reducer when other methods fit better</span>: If you're just filtering or mapping data, use array.filter or array.map. array.reduce shines when you're accumulating, transforming, or replacing multiple loops with a single pass.</Paragraph></li>
+                    <li><Paragraph className="max-w-full"><span className='font-bold'>- Mixing up the parameters</span>: While the initialValue is the second argument passed to array.reduce, the accumulator is the first parameter inside the reducer function.</Paragraph></li>
+                    <li><Paragraph className="max-w-full"><span className='font-bold'>- Overcomplicating logic</span>: Trying to do too much in one line makes your reducer hard to read. Break complex logic into smaller steps or helper functions.</Paragraph></li>
+                    <li><Paragraph className="max-w-full"><span className='font-bold'>- Mutating the accumulator carelessly</span>: If you're building objects or arrays inside the reducer, avoid modifying them directly. Use spread syntax or Object.assign for safer updates.</Paragraph></li>
+                    <li><Paragraph className="max-w-full"><span className='font-bold'>- Using a reducer when other methods fit better</span>: If you're just filtering or mapping data, use array.filter or array.map. array.reduce shines when you're accumulating, transforming, or replacing multiple loops with a single pass.</Paragraph></li>
                 </ul>
             </div>
         </Frame>
