@@ -44,9 +44,9 @@ const Frame = ({classname, children}) => {
                             {children}
                         </div>
                     </div>
-                    <div className='vg-footer flex justify-between gap-4 p-4'>
-                        <p className='uppercase tracking-wide'>HMPHRY.COM</p>
-                        <p className='flex gap-1 uppercase tracking-wider'>{pageNumber}/{totalPages.length}</p>
+                    <div className='vg-footer flex justify-between gap-4 p-4 pointer-events-none select-none'>
+                        <p className='uppercase tracking-wide text-gray'>HMPHRY.COM</p>
+                        <p className='flex gap-1 uppercase tracking-wider text-gray'>{pageNumber}/{totalPages.length}</p>
                     </div>
                 </div>
             </div>

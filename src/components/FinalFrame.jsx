@@ -12,22 +12,30 @@ const TitleFrame = ({title, children}) => {
                     <Header2>{title}</Header2>
                     {children}
                     <Paragraph>-Emily Humphrey</Paragraph>
-                    <div className="flex justify-between gap-4 items-center pt-6">
+                    <div className="flex justify-between gap-4 pt-6  select-none">
                         <ul className='grid grid-cols-1 gap-1 pb-4'>
-                            <li className='flex gap-2 items-center'>
-                                <FaGlobe className="w-6 fill-green" />
+                            <li className='flex gap-2'>
+                                <div className="pt-[.6rem]">
+                                    <FaGlobe className="w-6 fill-green" />
+                                </div>
                                 <Paragraph className="text-bronze uppercase text-sm font-semibold tracking-wide max-w-full">hmphry.com</Paragraph>
                             </li>
-                            <li className='flex gap-2 items-center'>
-                                <FaGithub className="w-6 fill-green" />
+                            <li className='flex gap-2'>
+                                <div className="pt-[.6rem]">
+                                    <FaGithub className="w-6 fill-green" />
+                                </div>
                                 <Paragraph className="text-bronze uppercase text-sm font-semibold tracking-wide max-w-full">github.com/hmphry</Paragraph>
                             </li>
-                            <li className='flex gap-2 items-center'>
-                                <FaLinkedinIn className="w-6 fill-green" />
+                            <li className='flex gap-2'>
+                                <div className="pt-[.6rem]">
+                                    <FaLinkedinIn className="w-6 fill-green" />
+                                </div>
                                 <Paragraph className="text-bronze uppercase text-sm font-semibold tracking-wide max-w-full">linkedin.com/in/heyhmphry</Paragraph>
                             </li>
-                            <li className='flex gap-2 items-center'>
-                                <FaInstagram className="w-6 fill-green" />
+                            <li className='flex gap-2'>
+                                <div className="pt-[.6rem]">
+                                    <FaInstagram className="w-6 fill-green" />
+                                </div>
                                 <Paragraph className="text-bronze uppercase text-sm font-semibold tracking-wide max-w-full">instagram.com/heyhmphry</Paragraph>
                             </li>
                         </ul>

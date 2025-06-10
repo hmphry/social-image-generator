@@ -5,7 +5,7 @@ import Logo from '@/assets/new-logo.svg?react'
 const TitleFrame = ({title, description}) => {
     return (
         <Frame>
-                <div className='vg-header flex justify-start items-start gap-2'>
+                <div className='vg-header flex justify-start items-start gap-2 select-none'>
                     <Logo className="w-20" />
                     <div className='grid grid-cols-1'>
                         <p className='font-display font-black text-2xl'>Emily Humphrey</p>
