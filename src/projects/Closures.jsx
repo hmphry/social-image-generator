@@ -65,7 +65,7 @@ closure6: `function fetchWithRetry(url, retries) {
   };
 }
 const retryFetch = fetchWithRetry('/data', 3);
-retryFetch();`,
+retryFetch();`
 }
 
 function App() {
