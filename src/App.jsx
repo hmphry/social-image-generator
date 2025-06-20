@@ -7,6 +7,7 @@ import FinalFrame from './components/FinalFrame'
 import Code from './components/Code'
 
 const codeExamples = {
+    codesmell1: ``,
     closure1: `function outer() {
   let count = 0;
   return function inner() {
@@ -75,113 +76,72 @@ function App() {
       <div className='grid grid-cols-1 gap-12 bg-slate-950 p-10'>
         
         <TitleFrame 
-          title={<div className=''>Closures and <div>Lexical Scope</div></div>} 
+          title={<div className=''>Common React Code Smells (pt. 1) </div>} 
           description={
             <>
-              <Paragraph>Closures and lexical scope are fundamental to how JavaScript works and are behaviors you’ve probably relied on without realizing it. If you’ve ever returned a function, kept a bit of state tucked away, or chained logic with configuration, closures were doing the heavy lifting.</Paragraph>
-              <Paragraph>A closure is what allows a function to retain access to variables from its original scope, even after that scope has finished executing. This behavior is consistent and predictable. It’s what enables patterns like function factories, state encapsulation, and async callbacks to work seamlessly in plain JavaScript.</Paragraph>
+              <Paragraph>These patterns won’t break your build or throw red errors in the console. In fact, they usually work just fine at first. That’s the problem. They creep in quietly... then slow development, increase cognitive load, and make your code harder to maintain, hand off, or scale.</Paragraph>
+              <Paragraph>This isn’t about nitpicking, it’s about maintaining code health and improving delivery speed. Here are some of the most common "code smells" I’ve seen in React projects, why they matter, and how I typically address them.</Paragraph>
             </>
           }
         ></TitleFrame>
 
-          {/* short circuiting */}
+          {/* Overloaded Component */}
         <Frame>
           <div className='vg-content flex flex-col gap-4 justify-start pt-10'>
-              <Header2 className='text-3xl'>What Is Lexical Scope?</Header2>
-              <Paragraph>Lexical scope refers to how JavaScript determines which variables are accessible in any given part of your code. It’s called lexical because it’s based on the physical structure of your code as it's written. Functions can access variables defined in the same scope, or in any parent scope that encloses them, regardless of where or when they’re actually called.</Paragraph>
-              <Header2 className='text-3xl pt-10'>What Is a Closure?</Header2>
-              
-                    <Paragraph>A closure is what happens when a function returns a new function. The returned function retains access to variables from its lexical scope, even after that outer scope has finished executing. Instead of losing those references when the surrounding function ends, the returned function keeps its original environment, regardless of where it's called.</Paragraph>
-                    <Paragraph>This behavior allows functions to preserve state, build private data, and respond later with the same context they were created in. </Paragraph>
+            <Header2 className='text-3xl'>When One Component Tries to Do It All</Header2>
+            <Paragraph className="max-w-10/12">It started as a button. Now it handles form validation, makes API calls, shows toast messages, toggles loading states, and renders three modals. What was once a clean, focused component has quietly grown into a tangle of responsibilities.</Paragraph>
+            <Paragraph className="max-w-10/12">These components are often easy to spot but deceptively hard to refactor. They tend to grow from the most basic building blocks like form elements. These quietly spread across the codebase, making small changes surprisingly risky.</Paragraph>
+            <Header3 className="text-xl text-green pt-6">How to fix</Header3>
+            <Paragraph className="max-w-full">Begin by identifying everything the component currently handles. From there, extract the core element into its own basic component. Then wrap that core with more focused, use-case-specific components. While doing this, take a moment to reassess whether each use case still makes sense. Shared logic should be pulled into custom hooks to keep things clean. The aim is to create clarity by separating responsibilities into smaller, testable pieces with clear boundaries.</Paragraph>
             </div>
         </Frame>
 
+          {/* Prop Drilling */}
+        <Frame>
+          <div className='vg-content flex flex-col gap-4 justify-start pt-10'>
+              <Header2 className='text-3xl'>Prop Drilling Through The Floor</Header2>
+              <Paragraph className="max-w-10/12">It starts innocently enough: a prop passed from a parent to a child. But a few layers in, and you’re passing data through a component that doesn't even use it so something buried deep in the tree can render properly.</Paragraph>
+              <Paragraph className="max-w-10/12">Prop drilling often crops up when global context isn't used early enough or when components get reused in the wrong places. It clutters up otherwise clean APIs and makes refactors painful, because now everything depends on everything else.</Paragraph>
+            <Header3 className="text-xl text-green  pt-6">How to fix</Header3>
+            <Paragraph className="max-w-10/12">Consider if the data really needs to live that high in the tree. If it's used deeply and broadly, consider lifting it into context. For data that affects the entire application, use Zustand or Jotai. If it's more specific to a component or feature, React's Context API is very capable.</Paragraph>
+            </div>
+        </Frame>
+
+          {/* Side Effects */}
         <Frame>
           <div className='vg-content flex  flex-col gap-4 justify-start pt-5'>
-                    <Header2 className='text-3xl'>A Closure</Header2>
-                <Paragraph>A practical example of a closure is a basic counter.</Paragraph>
-                <Code>
-                {codeExamples['closure2']}
-              </Code>
-                <Paragraph>Each time counter() is called, it increments the count variable, but count isn’t global or exposed. It lives inside the function returned by makeCounter(), accessible only through that inner function. The closure keeps it alive, maintaining its value between calls while keeping it safely out of reach. This is a clean way to preserve state without exposing internal data.</Paragraph>
+                    <Header2 className='text-3xl'>Slamming Side-Effects In Components</Header2>
+                <Paragraph className="max-w-10/12">When every bit of logic — from fetching data to syncing state to scrolling the page — is buried inside React hooks, your component becomes harder to read, update, and debug. Performance takes a hit... and so does your sanity. Not everything needs to live in a useEffect, you don’t need useMemo for every computed value, and don’t even get me started on useCallback. Over-relying on these hooks usually means state isn’t where it belongs, or that too many concerns are jammed into one place.</Paragraph>
+            <Header3 className="text-xl text-green pt-6">How to fix</Header3>
+            <Paragraph className="max-w-10/12">Consider whether that logic really belongs in the component. Extract reusable or domain-specific behavior into custom hooks. Keep your useEffect blocks tight: one job, clear dependencies. Save useMemo and useCallback for when they’re truly needed, like expensive calculations or stable references in props or context. Keep things simple, focused, and predictable.</Paragraph>
             </div>
         </Frame>
 
-        {/* try/catch */}
+          {/* Global State */}
         <Frame>
-          <div className='vg-content flex flex-col gap-4 justify-start pt-5'>
-                <div>
-                    <Eyebrow>Using Closures</Eyebrow>
-                    <Header2 className='text-3xl'>Currying</Header2>
-                </div>
-              <Paragraph className='pb-4'>Currying is a pattern that uses closures to transform a function taking multiple arguments into a sequence of functions, each handling one argument at a time. It’s especially useful for creating reusable, preconfigured utilities.</Paragraph>
-              <Code>
-                {codeExamples['closure3']}
-              </Code>
-              <Paragraph className='pb-4'>In this example, the style parameter is captured by the closure, allowing us to generate formatting functions tailored to specific styles. This approach is particularly useful when working with localization or user-specific settings.</Paragraph>
+          <div className='vg-content flex  flex-col gap-4 justify-start pt-5'>
+                    <Header2 className='text-3xl'>Global State Becomes A Global Headache</Header2>
+                <Paragraph className="max-w-10/12">If your global store knows about toast messages, checkbox values, and what modal is open, it's doing too much. Shared state is powerful, but when everything lives at the top level, even local interactions become global concerns. That means more re-renders, more accidental coupling, and way more cognitive overhead than necessary.</Paragraph>
+                <Paragraph className="max-w-10/12">This kind of sprawl makes debugging harder and testing more brittle. Global state should support your app’s shared behaviors. It should not become a dumping ground for anything that’s mildly annoying to pass down.</Paragraph>
+            <Header3 className="text-xl text-green pt-6">How to fix</Header3>
+            <Paragraph className="max-w-10/12">Only put something in global state if multiple parts of your app truly need access to it. Local state should stay local. For shared logic, consider scoped contexts or composing stateful hooks. Keep your global store focused and intentional.</Paragraph>
             </div>
         </Frame>
 
-        {/* Examples */}
+          {/* Bundle Bloat */}
         <Frame>
-          <div className='vg-content flex flex-col gap-4 justify-start pt-5'>
-                <div>
-                    <Eyebrow>Using Closures</Eyebrow>
-                    <Header2 className='text-3xl'>Function Factories</Header2>
-                </div>
-              <Paragraph>A function factory is a function that generates and returns another function, often customized with some internal value or setup.</Paragraph>
-              <Code>
-                {codeExamples['closure4']}
-              </Code>
-              <Paragraph>In this case, each logger function holds onto its own prefix, allowing consistent, contextual output without relying on shared state or repetitive logic. It’s a straightforward way to produce reusable, self-contained behaviors.</Paragraph>
-            </div>
-        </Frame>
-
-        {/* Pitfalls */}
-        <Frame>
-            <div className='vg-content flex flex-col justify-start gap-4 pt-5'>
-                <div>
-                    <Eyebrow>Using Closures</Eyebrow>
-                    <Header2 className='text-3xl'>Encapsulation</Header2>
-                </div>
-                <Paragraph>Closures offer a way to encapsulate internal state by keeping variables private and exposing only what’s needed. While commonly associated with object-oriented design, this pattern works just as effectively with functions.</Paragraph>
-                <Code>
-                {codeExamples['closure5']}
-              </Code>
-              <Paragraph>In this example, secret exists within the closure created by createSecret and is completely inaccessible from the outside. This is controlled interface without relying on classes or private field syntax.</Paragraph>
-            </div>
-        </Frame>
-        <Frame>
-            <div className='vg-content flex flex-col justify-start gap-4 pt-5'>
-                <div>
-                    <Eyebrow>Using Closures</Eyebrow>
-                    <Header2 className='text-3xl'>Async Handlers</Header2>
-                </div>
-                <Paragraph>Closures are especially useful in asynchronous code, where a function needs to retain context after a delay. In cases like retries or delayed execution, closures let the function access variables from when it was created, even when it runs later.</Paragraph>
-                <Code>
-                {codeExamples['closure6']}
-              </Code>
-            </div>
-        </Frame>
-
-        <Frame>
-            <div className='vg-content flex flex-col justify-start gap-4 pt-10'>
-                <div>
-                    <Eyebrow>Things to avoid</Eyebrow>
-                    <Header2 className='text-3xl'>Pitfalls</Header2>
-                </div>
-                <Paragraph>Closures are powerful, but they’re not without risks. Used carelessly, they can introduce subtle bugs or performance issues that are hard to spot. Here are some things you need to look out for:</Paragraph>
-                <ul className='grid grid-cols-1 gap-4'>
-                    <li><Paragraph className="max-w-full"><span className='font-bold'>- Memory leaks</span>: Closures can unintentionally keep variables alive, especially if they capture large objects or DOM elements that are no longer needed. This can lead to increased memory usage over time.</Paragraph></li>
-                    <li><Paragraph className="max-w-full"><span className='font-bold'>- Loop confusion</span>: A classic mistake is closing over loop variables, especially when using the var keyword, leading to unexpected values in callbacks or event handlers. The let keyword helps, but the pattern still requires attention.</Paragraph></li>
-                    <li><Paragraph className="max-w-full"><span className='font-bold'>- Debugging challenges</span>: In deeply nested or chained functions, it’s not always clear which variables are being held onto or why. This can make debugging harder, especially when the retained values are stale or no longer relevant.</Paragraph></li>
-                </ul>
-                <Paragraph>Used thoughtfully, closures are elegant and efficient.</Paragraph>
+          <div className='vg-content flex  flex-col gap-4 justify-start pt-5'>
+                    <Header2 className='text-3xl'>Bundle Bloating</Header2>
+                <Paragraph className="max-w-10/12">Not all imports are created equal. Pulling in an entire library just to use one utility or bringing in a full UI framework for a single spinner might not crash your app, but it will drag down performance and inflate your bundle.</Paragraph>
+                <Paragraph className="max-w-10/12">These choices add up fast. Suddenly, you're shipping megabytes of unused code to every user, and wondering why your Lighthouse score tanked.</Paragraph>
+                <Header3 className="text-xl text-green pt-6">How to fix</Header3>
+                <Paragraph className="max-w-10/12">Be deliberate with what you import. Prefer named imports when possible. Check whether a utility can be written inline or sourced from a lighter package. And use a bundle analyzer-tools like webpack-bundle-analyzer make it easy to spot the heavy hitters. Small changes here can have outsized impact on load time and user experience.</Paragraph>
             </div>
         </Frame>
         
         <FinalFrame title="That's all, Folks">
-            <Paragraph>Thanks for walking through closures with me. I hope I’ve shown why closures are useful... and maybe made them a bit less mysterious. You won’t need them everywhere, but when the situation calls for it, they’re often the cleanest tool for the job. Got a favorite use case or a clever pattern? Drop a comment, share your thoughts, or just say hey.</Paragraph>
+            <Paragraph>None of these patterns are deal-breakers on their own. They won’t throw errors or crash your app. But left unchecked, they slow things down and introduce more risk. The best way to stay ahead of them is to catch the smell early. Code reviews are your first line of defense. When something feels off, it probably is.</Paragraph>
+            <Paragraph>This was just part one, and there’s more to cover in the next round. If you’ve got a favorite code smell or a subtle pattern worth flagging, drop a comment or share it. Always curious what others are seeing in the wild.</Paragraph>
         </FinalFrame>
       </div>
     </FrameProvider>
