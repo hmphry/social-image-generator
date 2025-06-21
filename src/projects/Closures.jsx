@@ -176,6 +176,11 @@ function App() {
                     <li><Paragraph className="max-w-full"><span className='font-bold'>- Loop confusion</span>: A classic mistake is closing over loop variables, especially when using the var keyword, leading to unexpected values in callbacks or event handlers. The let keyword helps, but the pattern still requires attention.</Paragraph></li>
                     <li><Paragraph className="max-w-full"><span className='font-bold'>- Debugging challenges</span>: In deeply nested or chained functions, it’s not always clear which variables are being held onto or why. This can make debugging harder, especially when the retained values are stale or no longer relevant.</Paragraph></li>
                 </ul>
+                <ul className='grid grid-cols-1 gap-4'>
+                    <li><Paragraph className="max-w-full"><span className='font-bold'>- Memory leaks</span>: Closures can unintentionally keep variables alive, especially if they capture large objects or DOM elements that are no longer needed. This can lead to increased memory usage over time.</Paragraph></li>
+                    <li><Paragraph className="max-w-full"><span className='font-bold'>- Loop confusion</span>: A classic mistake is closing over loop variables, especially when using the var keyword, leading to unexpected values in callbacks or event handlers. The let keyword helps, but the pattern still requires attention.</Paragraph></li>
+                    <li><Paragraph className="max-w-full"><span className='font-bold'>- Debugging challenges</span>: In deeply nested or chained functions, it’s not always clear which variables are being held onto or why. This can make debugging harder, especially when the retained values are stale or no longer relevant.</Paragraph></li>
+                </ul>
                 <Paragraph>Used thoughtfully, closures are elegant and efficient.</Paragraph>
             </div>
         </Frame>
